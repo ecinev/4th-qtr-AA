@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>mRNA Sequence Translation</title>
+  </head>
+  <body>
+    <script>
+      var mRNA = prompt("Enter mRNA sequence:");
+      let codons = [];
+
+      for (let i = 0; i < mRNA.length - 2; i += 3) {
+        let codon = mRNA.slice(i, i + 3);
+        codons.push(codon);
+        if (codon === "AUG") {
+          document.write(`${codon} --> Met <br>`);
+        } else if (codon === "UAA" || codon === "UAG" || codon === "UGA") {
+          document.write(`${codon} --> STOP <br>`);
+          break;
+        } else {
+          document.write(`${codon} --> ${getAminoAcid(codon)} <br>`);
+        }
+      }
+
+      function getAminoAcid(codon) {
+        switch (codon) {
+          case "UUU":
+          case "UUC":
+            return "Phe";
+          case "UUA":
+          case "UUG":
+          case "CUU":
+          case "CUC":
+          case "CUA":
+          case "CUG":
+            return "Leu";
+          case "AUU":
+          case "AUC":
+          case "AUA":
+            return "Ile";
+          case "AUG":
+            return "Met";
+          case "GUU":
+          case "GUC":
+          case "GUA":
+          case "GUG":
+            return "Val";
+          case "UCU":
+          case "UCC":
+          case "UCA":
+          case "UCG":
+          case "AGU":
+          case "AGC":
+            return "Ser";
+          case "CCU":
+          case "CCC":
+          case "CCA":
+          case "CCG":
+            return "Pro";
+          case "ACU":
+          case "ACC":
+          case "ACA":
+          case "ACG":
+            return "Thr";
+          case "GCU":
+          case "GCC":
+          case "GCA":
+          case "GCG":
+            return "Ala";
+          case "UAU":
+          case "UAC":
+            return "Tyr";
+          case "CAU":
+          case "CAC":
+            return "His";
+          case "CAA":
+          case "CAG":
+            return "Gln";
+          case "AAU":
+          case "AAC":
+            return "Asn";
+          case "AAA":
+          case "AAG":
+            return "Lys";
+          case "GAU":
+          case "GAC":
+            return "Asp";
+          case "GAA":
+          case "GAG":
+            return "Glu";
+          case "UGU":
+          case "UGC":
+            return "Cys";
+          case "UGG":
+            return "Trp";
+          case "CGU":
+          case "CGC":
+          case "CGA":
+          case "CGG":
+          case "AGA":
+          case "AGG":
+            return "Arg";
+          case "GGU":
+          case "GGC":
+          case "GGA":
+          case "GGG":
+            return "Gly";
+          default:
+            return "Unknown";
+        }
+      }
+
+      document.write(`Codons: [${codons}]`);
+    </script>
+  </body>
+</html>
